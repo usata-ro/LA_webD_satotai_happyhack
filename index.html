@@ -1,43 +1,164 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+<link rel="icon" href="images\favicon.ico">
     <title>Happy Hack</title>
+    <meta name="description" content ="Happy Hackの紹介サイトです。">
+    <meta property="og:image" content="images\ogp.png">
+
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
 <header>
     <nav>
-    <ul>
-    <li>
-        <a href="#introduction">Introduction</a>
-    </li>
-    <li>
-        <a href="#courses">Courses</a>
-        </li>
-    <li>
-        <a href="#images">Images</a>
-    </li>
-    <li>
-        <a href="#access">Access</a>
-    </li>
+        <ul>
+        <li>
+            <a href="#introduction">Introduction</a></li>
+        <li>
+            <a href="#courses">Courses</a></li>
+        <li>
+            <a href="#images">Images</a></li>
+        <li>
+            <a href="#access">Access</a></li>
+        </ul>
     </nav>
+    </header>
+
+    <section class="firstview">
+        <div class="container">
+            <h1>
+                <img src="images\logo.png" alt="HappyHack">
+            </h1>
+            <p class="subtitle">
+                We Are Web Designers.
+            </p>
+        </div>
+    </section>
+
+    <section class="intro">
+
+        <h2 class="sectionname" id="introduction">
+            Introduction
+        </h2>
+
     <div class="container">
-        <h1>
-            <img src="images\logo.png" alt="HappyHack">
-        </h1>
-        <p class="subtitle">
-            We Are WebDesigners.
-        </p>
+
+        <div class="courseintro">
+            <img src="images\introduciton_001.jpg" alt="">
+            <div class="coursetext">
+                <p class="intromessage">
+                Happy Hackはいまをときめく若者がITを活用したものづくりに取り組める環境を提供しています。<br>
+                特に、Webデザイン領域のプログラミングを学習している生徒が一番積極的に活動しています。<br>
+                誰でも最初は初心者。それを一番知っている我々がプログラミングへの第一歩を踏み出すお手伝いをさせていただきます。
+                </p>
+                <a href="#access" class="touroku-blue">会員登録</a>
+            </div>
+        </div>
+        
+        <div class="courseintro">
+            <img src="images\introduction_002.jpg" alt="">
+            <div class="coursetext">
+                <p class="intromessage">
+                Happy Hackでは「楽しさ」と「真剣さ」をモットーにプログラミングを学びます。コースは全部で7つ準備をしています。<br>
+                WebデザインからWebサービス、3DゲームやiPhoneアプリまで幅広くお楽しみいただけます。<br>
+                自分の想いをカタチにして発信することをぜひこの場で体験してみてください。世界が変わって見えるかもしれません。
+                </p>
+                <a href="#access" class="touroku-yellow">会員登録</a>
+            </div>
+        </div>
     </div>
-</header>
+
+    </section>
+
+    <section class="course">
+        <h2 class="sectionname" id="courses">
+            Course
+        </h2>
+
+    <div class="container">
+        <div class="coursecontent">
+            <img src="images\html.png" alt="" class="courseimage">
+            <p class="coursename">HTMLコース</p>
+            <a href="#access" class="coursebutton">このコースを受ける</a>
+        </div>
+        <div class="coursecontent">
+            <img src="images\css.png" alt="" class="courseimage">
+            <p class="coursename">CSSコース</p>
+            <a href="#access" class="coursebutton">このコースを受ける</a>
+        </div>
+        <div class="coursecontent">
+            <img src="images\unity.png" alt="" class="courseimage">
+            <p class="coursename">Unityコース</p>
+            <a href="#access" class="coursebutton">このコースを受ける</a>
+        </div>
+        <div class="coursecontent">
+            <img src="images\ruby.png" alt="" class="courseimage">
+            <p class="coursename">Rubyコース</p>
+            <a href="#access" class="coursebutton">このコースを受ける</a>
+        </div>
+        <div class="coursecontent">
+            <img src="images\js.png" alt="" class="courseimage">
+            <p class="coursename">JavaScriptコース</p>
+            <a href="#access" class="coursebutton">このコースを受ける</a>
+        </div>
+        <div class="coursecontent">
+            <img src="images\swift.png" alt="" class="courseimage">
+            <p class="coursename">Swiftコース</p>
+            <a href="#access" class="coursebutton">このコースを受ける</a>
+        </div>
+        <div class="coursecontent">
+            <img src="images\go.png" alt="" class="courseimage">
+            <p class="coursename">GOコース</p>
+            <a href="#access" class="coursebutton">このコースを受ける</a>
+        </div>
+    </div>
+    </section>
 
 
+    <section class="images">
+        <h2 class="sectionname" id="images">
+            Images
+        </h2>
+
+        <div class="container">
+
+        <dic class="courseintro">
 
 
+        </dic>
 
+
+        </div>
+    </section>
+
+
+    <section class="Access">
+        <h2 class="sectionname" id="access">
+            Access
+        </h2>
+    <div class="container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6560.6262797845075!2d135.492449!3d34.697281!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e6f359905ed7%3A0x9fec1659611f776f!2zTGlmZSBpcyBUZWNoISDlpKfpmKrjgqrjg5XjgqPjgrk!5e0!3m2!1sja!2sus!4v1772017396179!5m2!1sja!2sus" 
+        width="600" 
+        height="450" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+    </section>
+
+
+<footer>
+    © 2023 Happy Hack Inc.
+
+</footer>
 
 </body>
 </html>

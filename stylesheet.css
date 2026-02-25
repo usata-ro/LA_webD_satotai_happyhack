@@ -1,76 +1,407 @@
-header {
-  /* 1. レイアウト：中身を真ん中に寄せる設定 */
-  display: flex;             /* Flexboxを有効にする（重要！） */
-  align-items: center;       /* 中身を上下方向の真ん中に置く */
-  justify-content: center;    /* 中身を左右方向の真ん中に置く */
-  flex-direction: column;    /* 中身を縦並びにする（ロゴと文字を上下に並べる場合） */
-  /* 2. サイズ：高さを決める */
-  height: 800px;             /* 高さを800pxに固定（または 100vh ） */
-  /* 3. 背景画像の設定 */
-  background-image: url('images/background1.jpg');
-  background-position: center; /* 画像の中心を基準にする */
-  background-size: cover;      /* 隙間なく画像を広げる */
+*{
+      font-family: "Noto Sans JP", sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
 }
 
-nav {
-  width: 100%;             /* 横幅を画面いっぱいに広げる */
-  background-color: none;  /* 背景色を濃いグレーに設定（背景画像がある場合は transparent でもOK） */
-  padding: 15px 0;         /* 上下に15pxの余白を作る */
+
+/* フォントを定義する */
+/* 太字用 (Bold) */
+@font-face {
+    font-family: 'Futura-Bold';
+    src: url('fonts/Futura-Bol.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
 }
 
-nav ul {
-  list-style: none;        /* リスト特有の「・（中黒）」を消す */
-  margin: 0;               /* 外側の余白をリセット */
-  padding: 0;              /* 内側の余白をリセット */
-  display: flex;           /* 子要素（li）を横並びにする */
-  justify-content: flex-end;
-  gap: 40px;               /* 各メニューの間の隙間を40px空ける */
+/* 標準用 (Book) */
+@font-face {
+    font-family: 'Futura-Book';
+    src: url('fonts/Futura-Boo.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
-/* リンク（aタグ）の見た目設定 */
-nav a {
-  text-decoration: none;   /* リンクの下線を消す */
-  color: #fff;          /* 文字色を白にする */
-  font-family: 'Futura', sans-serif; /* ロゴと同じ系統のフォントを指定 */
-  font-size: 18px;         /* 文字の大きさを調整 */
-  font-weight: bold;       /* 文字を太字にする */
-  transition: color 0.3s;  /* 色が変わる時に0.3秒かけて滑らかに変化させる */
+/* 標準・斜体用 (Book Oblique) */
+@font-face {
+    font-family: 'Futura-BookOblique';
+    src: url('fonts/Futura-BooObl.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic; /* または oblique */
 }
+
+/* 定義したフォントを適用する */
+body {
+    font-family: 'Futura-Book', sans-serif;
+
+}
+
+/* メインのロゴ見出しなど、力強く見せたい部分 */
+h1, h2 {
+    font-family: 'Futura-Bold', sans-serif;
+}
+
+/* 通常の説明文やメッセージ部分 */
+.intromessage, .coursetext {
+    font-family: 'Futura-Book', sans-serif;
+}
+
+/* サブタイトルや、少し変化をつけたい補足テキスト */
+.subtitle {
+    font-family: 'Futura-BookOblique', sans-serif;
+}
+
+body{
+    color: #333;
+}
+
+a{
+    color: inherit;
+    text-decoration:none;
+}
+.container{
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+    margin:0 auto;
+}
+
+
+header{
+    position: fixed;
+    z-index: 9999;
+    height: 80px;
+    width: 100%;
+    background-color: none;
+    padding-right:100px;
+}
+
+nav{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: auto;
+}
+
+nav a{
+    font-size: 16px;
+    font-weight: bold;
+    color:white;
+}
+nav p {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+nav ul{
+    display: flex;
+    list-style:none;
+    column-gap:40px;
+    justify-content: space-between;
+    margin-left: auto;
+}
+
+@media(max-width:768px){
+    header {
+        display: none; /* header要素そのものを非表示にする */
+    }
+}
+.firstview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 800px; /* 必要に応じて 100vh などに変更 */
+    background-image: url('images/background1.jpg');
+    background-position: center;
+    background-size: cover;
+    color: #fff;
+    text-align: center; /* 中の要素をまとめて中央寄せにする */
+}
+
+/* 1. ロゴを包むコンテナの設定 */
+.firstview .container {
+    width: 100%;       /* 親のfirstviewに対して横幅いっぱいに広がる */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 中身を水平中央に */
+}
+
+/* 2. h1タグの設定 */
+.firstview h1 {
+    width: 80%;        /* 画面幅の何％をロゴにするか（例：60%） */
+    max-width: 1000px;  /* ロゴが大きくなりすぎない上限 */
+    min-width: 400px;  /* ロゴが小さくなりすぎない下限 */
+    margin: 0;         /* 余計な余白を消す */
+}
+
+/* 3. 画像（ロゴ）の設定 */
+.firstview h1 img {
+    width: 100%;       /* h1の幅いっぱいに画像を広げる */
+    height: auto;
+    display: block;
+}
+
+/* サブタイトルの調整 */
+.subtitle {
+    margin-top: 20px;
+    font-size: 3.5rem; /* お好みのサイズに */
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+
+
 
 /* マウスを乗せた時（ホバー時）の演出 */
 nav a:hover {
-  color: #ff9900;          /* マウスを乗せた時にオレンジ色に変わる */
+  color:#3d5cdb;          /* マウスを乗せた時にオレンジ色に変わる */
 }
 
 
-/* ロゴとテキストを囲むコンテナの調整 */
-.container {
-  text-align: center;       /* 中身を中央寄せにする */
-  color: #fff;              /* 全体の文字色を白にする */
+
+
+.sectionname {
+    /* 1. テキストを中央に寄せる */
+    text-align: center;
+
+    /* 2. フォントの設定 */
+        font-size: 3.5rem; /* PCではドカンと大きく */
+    color:#3d5cdb; /* 背景が画像なので白を指定 */
+
+    /* 3. 余白の整理 */
+    margin: 0; 
+    padding: 30px 0; /* 上下の余白を均等に（40pxだと少し広いかもしれません） */
+    
+    /* 4. 太さの調整（必要に応じて） */
+    font-weight: normal; 
 }
 
-/* ロゴ画像（h1の中のimg）のサイズ調整 */
-.container h1 img {
-  color: white;
-  max-width: 300px;        /* ロゴの最大幅（お好みで調整してください） */
-  height: auto;             /* アスペクト比を維持 */
-  margin-bottom: 10px;      /* 下の文字との間隔を空ける */
+
+
+/* 画面幅が768px以上（PC/タブレット）の場合 */
+@media (max-width: 768px) {
+    .sectionname {
+        font-size: 2rem; /* PCではドカンと大きく */
+    }
+}
+/* ここから！！！
+いんとろだくしょん！！！
+だよ！！！！ */
+
+/* 全体のコンテナ設定 */
+.courseintro {
+    display: flex;
+    align-items: center; /* 上下中央揃え（必要に応じて指定） */
+    justify-content: center;
+    margin-bottom: 60px; /* ブロック間の余白 */
+    gap: 40px; /* 画像とテキストの間の余白 */
 }
 
-h1 {
-  margin: 0;                 /* デフォルトの余白を消す */
-  padding: 0;
+/* 2つ目のブロックだけ左右を反転させる */
+.courseintro:nth-of-type(2) {
+    flex-direction: row-reverse;
 }
 
-h1 img {
-  display: block;            /* 画像の下に隙間ができるのを防ぐ */
-  margin: 0 auto;            /* 念のための左右中央寄せ */
-  max-width: 100%;           /* 親要素からはみ出さないようにする */
+/* 画像のサイズ調整 */
+.courseintro img {
+    width: 45%; /* 横幅を調整 */
+    height: auto;
+    object-fit: cover;
 }
-/* 「We Are WebDesigners.」のテキストスタイル */
-.subtitle {
-  font-size: 24px;          /* 文字の大きさ */
-  letter-spacing: 0.1em;    /* 文字の間隔を少し広げておしゃれに */
-  font-weight: 300;         /* 少し細めのウェイトにする */
-  margin: 0;                /* 余計な余白をリセット */
+
+/* テキストエリアの調整 */
+.coursetext {
+    width: 35%;
+    color:#333;
+}
+
+.intromessage {
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-align: left; /* 1: 中のテキスト（pタグなど）を左寄せにする */
+}
+
+/* ボタンの共通スタイル（例） */
+.touroku-blue, .touroku-yellow {
+    display: inline-block;
+    padding: 10px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.touroku-blue, .touroku-yellow {
+    display: block;      /* inline-blockからblockに変更 */
+    width: fit-content;  /* 幅を文字数に合わせる */
+    margin: 0 auto;      /* 左右のマージンを自動（auto）にして中央へ */
+    
+    /* 以下、既存のスタイル */
+    padding: 10px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+}
+.touroku-blue { background-color: #007bff; }
+.touroku-yellow { background-color: #ffc107; color: #333; }
+
+@media (max-width: 768px) {
+    .courseintro, .courseintro:nth-of-type(2) {
+        flex-direction: column; /* 縦並びにする */
+    }
+    .courseintro img, .coursetext {
+        width: 100%; /* 横幅をいっぱいにする */
+    }
+}
+
+
+/* ここから！！！
+こーすしょうかい！！！だよ！！！！！！
+だよ！！！！ */
+
+
+
+
+
+/* 1. セクション全体の背景（水色） */
+.course {
+    background-color: #e0f7fa; /* 明るい水色 */
+    padding: 80px 0;
+    width: 100%;
+}
+
+/* 2. カードを並べる親要素 */
+.course .container {
+    display: flex;
+    flex-wrap: wrap;         /* 幅がいっぱいになったら自動で下の行へ */
+    justify-content: center;  /* 2行目の3つも中央に寄せる */
+    gap: 20px;               /* カード同士の間隔 */
+    max-width: 1200px;       /* 画面が大きくても広がりすぎないように制限 */
+    margin: 0 auto;          /* コンテナ自体を中央に配置 */
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* 3. 各コースのカード（白い角丸長方形） */
+.coursecontent {
+    background-color: #ffffff;
+    border-radius: 20px;      /* 角を丸める */
+    
+    /* PCでの計算：4枚並べるために25%から隙間分を引く */
+    width: calc(25% - 20px); 
+    min-width: 250px;         /* カードが潰れないための最小幅 */
+    
+    padding: 40px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;   /* 中身を縦に並べる */
+    align-items: center;      /* 中身を水平中央に */
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* 柔らかい影 */
+    transition: transform 0.3s ease;
+}
+
+/* マウスを乗せた時の動き */
+.coursecontent:hover {
+    transform: translateY(-5px);
+}
+
+/* 4. カード内の各パーツ */
+.courseimage {
+    width: 80px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.coursename {
+    font-family: 'Futura-Bold', sans-serif; /* 先ほど設定したフォント */
+    font-size: 1.25rem;
+    color: #333;
+    margin: 0 0 20px 0;
+}
+
+.coursebutton {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;      /* カプセル型のボタン */
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+    margin-top: auto;         /* ボタンを常にカードの下部に揃える */
+}
+
+.coursebutton:hover {
+    background-color: #0056b3;
+}
+
+/* 5. レスポンシブ対応：スマホ設定 */
+@media (max-width: 768px) {
+    .coursecontent {
+        width: 100%;          /* 画面幅いっぱい（縦一列）にする */
+        max-width: 450px;     /* スマホでも横に広がりすぎないように */
+    }
+    
+    .course {
+        padding: 50px 0;      /* スマホでは上下の余白を少し詰める */
+    }
+}
+
+
+/* ここから！！！
+あくせす！！だよ！！！！！！
+だよ！！！！ 
+
+アクセス！！*/
+
+
+/* 親要素（Accessセクション全体）の設定 */
+.Access {
+    width: 100%;
+    text-align: center; /* 中の要素（h2など）を中央へ */
+    padding: 60px 0;
+}
+
+/* マップを包むコンテナの設定 */
+.Access .container {
+    display: flex;
+    justify-content: center; /* 横方向の中央揃え */
+    align-items: center;     /* 縦方向の中央揃え（必要に応じて） */
+    width: 100%;
+    padding: 0 20px;         /* スマホ時に画面端にピタッとくっつかないよう余白を作る */
+    box-sizing: border-box;
+}
+
+/* Googleマップ（iframe）自体の設定 */
+.Access iframe {
+    /* 1. 最大幅を指定しつつ、画面が狭いときは100%になるようにする */
+    width: 100%;
+    max-width: 800px; /* お好みの最大幅に調整してください */
+    
+    /* 2. 高さを固定、または画面に合わせて調整 */
+    height: 450px;
+    
+    border-radius: 10px; /* 角を少し丸くするとモダンになります */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 軽い影をつけると背景と馴染みます */
+}
+
+
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    color:#3d5cdb;
+    background-color: none;
 }
