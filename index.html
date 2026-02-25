@@ -11,6 +11,7 @@
     <title>Happy Hack</title>
     <meta name="description" content ="Happy Hackの紹介サイトです。">
     <meta property="og:image" content="images\ogp.png">
+<script src="https://ajax.googleapis.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="stylesheet.css">
 </head>
@@ -85,37 +86,37 @@
         <div class="coursecontent">
             <img src="images\html.png" alt="" class="courseimage">
             <p class="coursename">HTMLコース</p>
-            <a href="#access" class="coursebutton">このコースを受ける</a>
+            <a href="#access" class="coursebutton btn-html">このコースを受ける</a>
         </div>
         <div class="coursecontent">
             <img src="images\css.png" alt="" class="courseimage">
             <p class="coursename">CSSコース</p>
-            <a href="#access" class="coursebutton">このコースを受ける</a>
+            <a href="#access" class="coursebutton btn-css">このコースを受ける</a>
         </div>
         <div class="coursecontent">
             <img src="images\unity.png" alt="" class="courseimage">
             <p class="coursename">Unityコース</p>
-            <a href="#access" class="coursebutton">このコースを受ける</a>
+            <a href="#access" class="coursebutton btn-unity">このコースを受ける</a>
         </div>
         <div class="coursecontent">
             <img src="images\ruby.png" alt="" class="courseimage">
             <p class="coursename">Rubyコース</p>
-            <a href="#access" class="coursebutton">このコースを受ける</a>
+            <a href="#access" class="coursebutton btn-ruby">このコースを受ける</a>
         </div>
         <div class="coursecontent">
             <img src="images\js.png" alt="" class="courseimage">
             <p class="coursename">JavaScriptコース</p>
-            <a href="#access" class="coursebutton">このコースを受ける</a>
+            <a href="#access" class="coursebutton btn-js">このコースを受ける</a>
         </div>
         <div class="coursecontent">
             <img src="images\swift.png" alt="" class="courseimage">
             <p class="coursename">Swiftコース</p>
-            <a href="#access" class="coursebutton">このコースを受ける</a>
+            <a href="#access" class="coursebutton btn-swift">このコースを受ける</a>
         </div>
         <div class="coursecontent">
             <img src="images\go.png" alt="" class="courseimage">
             <p class="coursename">GOコース</p>
-            <a href="#access" class="coursebutton">このコースを受ける</a>
+            <a href="#access" class="coursebutton btn-go">このコースを受ける</a>
         </div>
     </div>
     </section>
@@ -160,5 +161,29 @@
 
 </footer>
 
+
+<script>
+        const images = [
+            'images/background1.jpg',
+            'images/background2.jpg',
+            'images/background3.jpg',
+            'images/background4.jpg',
+            'images/background5.jpg'
+        ];
+
+        let currentIndex = 0;
+        const firstview = document.querySelector('.firstview');
+
+        function changeBackground() {
+            // 次の画像へ（5枚目まで行ったら0に戻る）
+            currentIndex = (currentIndex + 1) % images.length;
+            
+            // 背景を変更
+            firstview.style.backgroundImage = `url('${images[currentIndex]}')`;
+        }
+
+        // 5秒ごとに実行
+        setInterval(changeBackground, 5000);
+    </script>
 </body>
 </html>
