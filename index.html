@@ -122,21 +122,30 @@
     </section>
 
 
-    <section class="images">
-        <h2 class="sectionname" id="images">
-            Images
-        </h2>
+<section class="images">
+    <h2 class="sectionname" id="images">
+        Images
+    </h2>
 
-        <div class="container">
+    <div class="container">
+        <div class="slider-viewport">
+            <div class="slider-track">
+                <div class="slider-card"><img src="images/background1.jpg" alt=""></div>
+                <div class="slider-card"><img src="images/background2.jpg" alt=""></div>
+                <div class="slider-card"><img src="images/background3.jpg" alt=""></div>
+                <div class="slider-card"><img src="images/background4.jpg" alt=""></div>
+                <div class="slider-card"><img src="images/background5.jpg" alt=""></div>
+            </div>
 
-        <dic class="courseintro">
-
-
-        </dic>
-
-
+            <button class="slider-prev">＜</button>
+            <button class="slider-next">＞</button>
         </div>
-    </section>
+        <div class="slider-dots"></div>
+    </div>
+
+</section>
+
+ 
 
 
     <section class="Access">
@@ -163,27 +172,98 @@
 
 
 <script>
-        const images = [
-            'images/background1.jpg',
-            'images/background2.jpg',
-            'images/background3.jpg',
-            'images/background4.jpg',
-            'images/background5.jpg'
-        ];
+    // --- 1. 背景画像切り替え用 (Firstview) ---
+    const bgImages = [
+        'images/background1.jpg',
+        'images/background2.jpg',
+        'images/background3.jpg',
+        'images/background4.jpg',
+        'images/background5.jpg'
+    ];
+    let bgIndex = 0; // 名前を bgIndex に変更
+    const firstview = document.querySelector('.firstview');
 
-        let currentIndex = 0;
-        const firstview = document.querySelector('.firstview');
-
-        function changeBackground() {
-            // 次の画像へ（5枚目まで行ったら0に戻る）
-            currentIndex = (currentIndex + 1) % images.length;
-            
-            // 背景を変更
-            firstview.style.backgroundImage = `url('${images[currentIndex]}')`;
+    function changeBackground() {
+        if (firstview) {
+            bgIndex = (bgIndex + 1) % bgImages.length;
+            firstview.style.backgroundImage = `url('${bgImages[bgIndex]}')`;
         }
+    }
+    setInterval(changeBackground, 5000);
 
-        // 5秒ごとに実行
-        setInterval(changeBackground, 5000);
-    </script>
+
+    // --- 2. 画像スライダー用 (Images Section) ---
+
+
+(function() {
+    const track = document.querySelector('.slider-track');
+    const nextBtn = document.querySelector('.slider-next');
+    const prevBtn = document.querySelector('.slider-prev');
+    const dotsContainer = document.querySelector('.slider-dots');
+    
+    // オリジナルの枚数を保持（ドット用）
+    const originalCount = document.querySelectorAll('.slider-card').length;
+    let currentDotIndex = 0;
+
+    // 1. ドットの生成
+    for (let i = 0; i < originalCount; i++) {
+        const d = document.createElement('div');
+        d.classList.add('dot');
+        if (i === 0) d.classList.add('active');
+        dotsContainer.appendChild(d);
+    }
+    const dots = document.querySelectorAll('.dot');
+
+    // 2. 「次へ」ボタンの処理
+    nextBtn.addEventListener('click', () => {
+        const cards = document.querySelectorAll('.slider-card');
+        const cardWidth = cards[0].offsetWidth;
+
+        // アニメーション付きで左に1枚分ずらす
+        track.style.transition = 'transform 0.5s ease-in-out';
+        track.style.transform = `translateX(-${cardWidth}px)`;
+
+        // アニメーション終了後に、先頭の要素を最後に移動させて位置をリセットする
+        setTimeout(() => {
+            track.style.transition = 'none'; // 瞬間的に戻すのでアニメーションOFF
+            track.appendChild(cards[0]);    // 先頭のカードを一番後ろに移動
+            track.style.transform = 'translateX(0)'; // 位置を0に戻す
+            
+            // ドットの更新
+            currentDotIndex = (currentDotIndex + 1) % originalCount;
+            updateDots();
+        }, 500);
+    });
+
+    // 3. 「前へ」ボタンの処理
+    prevBtn.addEventListener('click', () => {
+        const cards = document.querySelectorAll('.slider-card');
+        const cardWidth = cards[0].offsetWidth;
+
+        // まずアニメーションなしで、最後の要素を先頭に移動し、位置を1枚分左にずらしておく
+        track.style.transition = 'none';
+        track.insertBefore(cards[cards.length - 1], cards[0]);
+        track.style.transform = `translateX(-${cardWidth}px)`;
+
+        // 0.01秒待ってから（レンダリングの関係）、アニメーション付きで0に戻す
+        setTimeout(() => {
+            track.style.transition = 'transform 0.5s ease-in-out';
+            track.style.transform = 'translateX(0)';
+            
+            // ドットの更新
+            currentDotIndex = (currentDotIndex - 1 + originalCount) % originalCount;
+            updateDots();
+        }, 10);
+    });
+
+    function updateDots() {
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentDotIndex);
+        });
+    }
+})();
+</script>
+
+
 </body>
 </html>

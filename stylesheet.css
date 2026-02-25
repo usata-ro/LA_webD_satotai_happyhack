@@ -387,6 +387,87 @@ nav a:hover {
 }
 
 
+
+
+
+/* ここから！！！
+ime-ji！！だよ！！！！！！
+だよ！！！！ 
+
+いめーじ！！*/
+/* スライダー全体の窓 */
+/* スライダー全体の枠 */
+.slider-viewport {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.slider-track {
+    display: flex;
+    flex-wrap: nowrap; /* 折り返し禁止 */
+    transition: transform 0.5s ease-in-out;
+    width: 100%; /* JSで計算するため初期値は100% */
+}
+
+.slider-card {
+    /* PC: 1/4 = 25%, スマホ: 1/2 = 50% */
+    flex: 0 0 25%; 
+    margin: 0;
+    padding: 0; /* 隙間をなくす */
+    box-sizing: border-box;
+}
+
+.slider-card img {
+    width: 100%;
+    height: 300px; /* お好みの高さに */
+    display: block; /* 画像下の隙間を消す */
+    object-fit: cover;
+}
+
+/* スマホ表示 */
+@media (max-width: 768px) {
+    .slider-card {
+        flex: 0 0 50%;
+    }
+}
+
+/* ドットのスタイル */
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    background-color: #ddd;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dot.active {
+    background-color: #333; /* 現在地を濃く */
+    transform: scale(1.2);
+}
+
+/* ボタン調整 */
+.slider-prev, .slider-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: rgba(255,255,255,0.7);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+.slider-prev { left: 0; }
+.slider-next { right: 0; }
+
 /* ここから！！！
 あくせす！！だよ！！！！！！
 だよ！！！！ 
