@@ -78,6 +78,7 @@
     </section>
 
     <section class="course">
+        <canvas id="particleCanvas"></canvas>
         <h2 class="sectionname" id="courses">
             Course
         </h2>
@@ -262,6 +263,103 @@
         });
     }
 })();
+
+
+
+/**
+ * pa---thikuru
+ * Particle System for .course Section
+ * C#のクラス構造に近い形で実装しています。
+ */
+
+const canvas = document.getElementById('particleCanvas');
+const ctx = canvas.getContext('2d');
+const section = document.querySelector('.course');
+
+// --- 1. 初期設定 & リサイズ処理 ---
+function resize() {
+    // セクションの実寸をキャンバスの解像度に設定
+    canvas.width = section.offsetWidth;
+    canvas.height = section.offsetHeight;
+}
+
+// 画面サイズが変わった時にキャンバスサイズを再計算
+window.addEventListener('resize', resize);
+resize();
+
+// --- 2. パーティクルクラスの定義 ---
+class Particle {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        // 出現位置をセクション内のランダムな場所に
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        
+        // 速度（UnityのVector2のようなイメージ）
+        this.vx = (Math.random() - 0.5) * 1.2; 
+        this.vy = (Math.random() - 0.5) * 1.2;
+        
+        // 見た目
+        this.radius = Math.random() * 2 + 1;
+        this.color = 'rgba(255, 255, 255, 0.4)'; // 白色の半透明
+    }
+
+    update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // 壁に当たったら跳ね返る（境界チェック）
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+    }
+
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+    }
+}
+
+// --- 3. メイン処理（Update & Render） ---
+const particleCount = 60; // 粒子の数（重い場合は減らしてください）
+const particles = [];
+
+// インスタンス生成
+for (let i = 0; i < particleCount; i++) {
+    particles.push(new Particle());
+}
+
+function loop() {
+    // 前のフレームを消去（背景をクリア）
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // 各パーティクルの更新と描画
+    particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+    });
+
+    // 次のフレームをリクエスト
+    requestAnimationFrame(loop);
+}
+
+// アニメーション開始
+loop();
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 
