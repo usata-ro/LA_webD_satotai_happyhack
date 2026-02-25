@@ -1,0 +1,76 @@
+header {
+  /* 1. レイアウト：中身を真ん中に寄せる設定 */
+  display: flex;             /* Flexboxを有効にする（重要！） */
+  align-items: center;       /* 中身を上下方向の真ん中に置く */
+  justify-content: center;    /* 中身を左右方向の真ん中に置く */
+  flex-direction: column;    /* 中身を縦並びにする（ロゴと文字を上下に並べる場合） */
+  /* 2. サイズ：高さを決める */
+  height: 800px;             /* 高さを800pxに固定（または 100vh ） */
+  /* 3. 背景画像の設定 */
+  background-image: url('images/background1.jpg');
+  background-position: center; /* 画像の中心を基準にする */
+  background-size: cover;      /* 隙間なく画像を広げる */
+}
+
+nav {
+  width: 100%;             /* 横幅を画面いっぱいに広げる */
+  background-color: none;  /* 背景色を濃いグレーに設定（背景画像がある場合は transparent でもOK） */
+  padding: 15px 0;         /* 上下に15pxの余白を作る */
+}
+
+nav ul {
+  list-style: none;        /* リスト特有の「・（中黒）」を消す */
+  margin: 0;               /* 外側の余白をリセット */
+  padding: 0;              /* 内側の余白をリセット */
+  display: flex;           /* 子要素（li）を横並びにする */
+  justify-content: flex-end;
+  gap: 40px;               /* 各メニューの間の隙間を40px空ける */
+}
+
+/* リンク（aタグ）の見た目設定 */
+nav a {
+  text-decoration: none;   /* リンクの下線を消す */
+  color: #fff;          /* 文字色を白にする */
+  font-family: 'Futura', sans-serif; /* ロゴと同じ系統のフォントを指定 */
+  font-size: 18px;         /* 文字の大きさを調整 */
+  font-weight: bold;       /* 文字を太字にする */
+  transition: color 0.3s;  /* 色が変わる時に0.3秒かけて滑らかに変化させる */
+}
+
+/* マウスを乗せた時（ホバー時）の演出 */
+nav a:hover {
+  color: #ff9900;          /* マウスを乗せた時にオレンジ色に変わる */
+}
+
+
+/* ロゴとテキストを囲むコンテナの調整 */
+.container {
+  text-align: center;       /* 中身を中央寄せにする */
+  color: #fff;              /* 全体の文字色を白にする */
+}
+
+/* ロゴ画像（h1の中のimg）のサイズ調整 */
+.container h1 img {
+  color: white;
+  max-width: 300px;        /* ロゴの最大幅（お好みで調整してください） */
+  height: auto;             /* アスペクト比を維持 */
+  margin-bottom: 10px;      /* 下の文字との間隔を空ける */
+}
+
+h1 {
+  margin: 0;                 /* デフォルトの余白を消す */
+  padding: 0;
+}
+
+h1 img {
+  display: block;            /* 画像の下に隙間ができるのを防ぐ */
+  margin: 0 auto;            /* 念のための左右中央寄せ */
+  max-width: 100%;           /* 親要素からはみ出さないようにする */
+}
+/* 「We Are WebDesigners.」のテキストスタイル */
+.subtitle {
+  font-size: 24px;          /* 文字の大きさ */
+  letter-spacing: 0.1em;    /* 文字の間隔を少し広げておしゃれに */
+  font-weight: 300;         /* 少し細めのウェイトにする */
+  margin: 0;                /* 余計な余白をリセット */
+}
