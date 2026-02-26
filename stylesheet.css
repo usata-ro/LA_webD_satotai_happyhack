@@ -1,3 +1,8 @@
+
+html {
+    scroll-behavior: smooth;
+}
+
 *{
       font-family: "Noto Sans JP", sans-serif;
     box-sizing: border-box;
@@ -494,9 +499,18 @@ ime-ji！！だよ！！！！！！
 .dot.active {
     background-color: #333;
 }
+@media (max-width: 800px) {
+    .slider-outer {
+        padding: 0 50px; /* スマホでは余白を少し詰め気味に */
+    }
+    .slider-card {
+        flex: 0 0 50%; /* スマホは1枚表示 */
+    }
+    .slider-prev { left: 10px; }
+    .slider-next { right: 10px; }
+}
 
-
-@media (max-width: 768px) {
+@media (max-width: 500px) {
     .slider-outer {
         padding: 0 50px; /* スマホでは余白を少し詰め気味に */
     }
