@@ -70,7 +70,7 @@ a{
 
 
 header{
-    position: fixed;
+    position: absolute;
     z-index: 9999;
     height: 80px;
     width: 100%;
@@ -84,12 +84,16 @@ nav{
     align-items: center;
     justify-content: space-between;
     margin-left: auto;
+    transition-duration: 0.5s; /* 0.5秒かけて変化 */
+
 }
 
 nav a{
     font-size: 16px;
     font-weight: bold;
     color:white;
+    transition-duration: 0.5s; /* 0.5秒かけて変化 */
+
 }
 nav p {
     font-size: 24px;
@@ -102,6 +106,8 @@ nav ul{
     column-gap:40px;
     justify-content: space-between;
     margin-left: auto;
+    transition-duration: 0.5s; /* 0.5秒かけて変化 */
+
 }
 
 @media(max-width:768px){
@@ -177,13 +183,32 @@ nav a:hover {
 
     /* 3. 余白の整理 */
     margin: 0; 
-    padding: 30px 0; /* 上下の余白を均等に（40pxだと少し広いかもしれません） */
+    padding: 60px 0; /* 上下の余白を均等に（40pxだと少し広いかもしれません） */
     
     /* 4. 太さの調整（必要に応じて） */
     font-weight: normal; 
 }
 
+@media (max-width: 768px) {
+.firstview h1 {
+    width: 60%;        /* 画面幅の何％をロゴにするか（例：60%） */
+    max-width: 1000px;  /* ロゴが大きくなりすぎない上限 */
+    min-width: 200px;  /* ロゴが小さくなりすぎない下限 */
+    margin: 0;         /* 余計な余白を消す */
+}
 
+}
+
+@media (max-width: 768px) {
+.subtitle {
+    margin-top: 20px;
+    font-size: 2rem; /* お好みのサイズに */
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+}
 
 /* 画面幅が768px以上（PC/タブレット）の場合 */
 @media (max-width: 768px) {
@@ -249,14 +274,15 @@ nav a:hover {
     border-radius: 5px;
     color: #fff;
     font-weight: bold;
-}
+ /*duration入れてみた*/
+transition-duration: 0.5s; /* 0.5秒かけて変化 */}
 
 .touroku-blue:hover, .touroku-yellow:hover{
   /* 外側に薄い黒い影（水平 垂直 ぼかし 範囲 色） */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 .touroku-blue { background-color: #007bff; }
-.touroku-yellow { background-color: #ffc107; color: #333; }
+.touroku-yellow { background-color: #ffc107; color: #fff; }
 
 @media (max-width: 768px) {
     .courseintro, .courseintro:nth-of-type(2) {
@@ -319,11 +345,13 @@ nav a:hover {
     transform: translateY(-5px);
 } */
 
-/* 4. カード内の各パーツ */
 .courseimage {
-    width: 80px;
-    height: auto;
+    width: 80px;      /* 横幅を固定 */
+    height: 80px;     /* 高さを横幅と同じにして正方形の枠を作る */
+    object-fit: contain; /* 枠の中で画像が歪まないように収める */
     margin-bottom: 20px;
+    
+    /* max-height: 300px; は不要になるので削除してOK */
 }
 
 .coursename {
@@ -340,16 +368,20 @@ nav a:hover {
     background-color: #007bff;
     color: #fff;
     text-decoration: none;
-    border-radius: 50px;      /* カプセル型のボタン */
+    border-radius: 15px;      /* カプセル型のボタン */
     font-weight: bold;
     font-size: 0.9rem;
     transition: background-color 0.3s;
     margin-top: auto;         /* ボタンを常にカードの下部に揃える */
+    transition-duration: 1s; /* 0.5秒かけて変化 */
+
 }
 
 .coursebutton:hover{
   /* 外側に薄い黒い影（水平 垂直 ぼかし 範囲 色） */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition-duration: 0.5s; /* 0.5秒かけて変化 */
+
 }
 
 .btn-html {
@@ -449,7 +481,7 @@ ime-ji！！だよ！！！！！！
 /* スマホ表示 */
 @media (max-width: 768px) {
     .slider-card {
-        flex: 0 0 50%;
+        flex: 0 0 80%;
     }
 }
 
@@ -509,7 +541,8 @@ ime-ji！！だよ！！！！！！
     justify-content: center; /* 横方向の中央揃え */
     align-items: center;     /* 縦方向の中央揃え（必要に応じて） */
     width: 100%;
-    padding: 0 20px;         /* スマホ時に画面端にピタッとくっつかないよう余白を作る */
+    /* padding: 0 20px;         */
+     /* スマホ時に画面端にピタッとくっつかないよう余白を作る */
     box-sizing: border-box;
 }
 
@@ -525,7 +558,9 @@ ime-ji！！だよ！！！！！！
     border-radius: 10px; /* 角を少し丸くするとモダンになります */
     box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 軽い影をつけると背景と馴染みます */
 }
+@media (max-width: 768px) {
 
+}
 
 footer{
     display: flex;
